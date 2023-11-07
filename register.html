@@ -42,7 +42,27 @@
 
 	<!-- start login -->
 	<div class="flex justify-center mb-6">
-		<div class="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
+		<div class="flex flex-col w-full max-w-md p-12 space-y-4 text-center dark:bg-gray-900 dark:text-gray-100">
+			<h1 class="text-3xl font-semibold">Sign in to your account</h1>
+			<a class="text-sm dark:text-gray-400" href="/">Or start your free trial</a>
+			<form novalidate="" class="space-y-4">
+				<div class="flex flex-col">
+					<label for="email" class="sr-only">Email address</label>
+					<input id="email" type="email" placeholder="Email address" class="rounded-t-md dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:ri focus:dark:border-violet-400 focus:ri">
+					<label for="password" class="sr-only">Password</label>
+					<input id="password" type="text" placeholder="Password" class="-mt-1 rounded-b-md dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:ri focus:dark:border-violet-400 focus:ri">
+				</div>
+				<div class="flex justify-between">
+					<div class="flex items-center">
+						<input type="checkbox" name="remember" id="remember" aria-label="Remember me" class="mr-1 rounded-sm focus:ri focus:dark:border-violet-400 focus:ri accent-violet-400">
+						<label for="remember" class="text-sm dark:text-gray-400">Remember me</label>
+					</div>
+					<a class="text-sm dark:text-gray-400" href="/">Forgot your password?</a>
+				</div>
+				<button type="button" class="px-8 py-3 space-x-2 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Sign in</button>
+			</form>
+		</div>
+		<!-- <div class="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
 			<h1 class="text-2xl font-bold text-center">Login</h1>
 			<form novalidate="" action="" class="space-y-6">
 				<div class="space-y-1 text-sm">
@@ -83,7 +103,7 @@
 			<p class="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
 				<a rel="noopener noreferrer" href="#" class="underline dark:text-gray-100">Sign up</a>
 			</p>
-		</div>
+		</div> -->
 	</div>
 	<!-- end login -->
 
@@ -130,62 +150,93 @@
 				</div>
 			</header>
 		</div>
+		<div>
+			<div class="relative flex items-center justify-center w-full dark:text-gray-50">
+				<button aria-label="Slide back" type="button" class="absolute left-0 z-30 p-2 ml-10 focus:outline-none focus:dark:bg-gray-400 focus:ri focus:ri focus:ri">
+					<svg width="8" height="14" fill="none" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4">
+						<path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+				</button>
+				<div class="flex items-center justify-start w-full h-full gap-6 py-4 mx-auto overflow-auto lg:gap-8">
+					<div class="relative flex flex-shrink-0 w-full sm:w-auto">
+						<img class="object-cover object-center h-96 aspect-square dark:bg-gray-500" src="https://source.unsplash.com/random/240x360/?1" alt="Image 1">
+					</div>
+					<div class="relative flex flex-shrink-0 w-full sm:w-auto">
+						<img class="object-cover object-center h-96 aspect-square dark:bg-gray-500" src="https://source.unsplash.com/random/240x360/?2" alt="Image 2">
+					</div>
+					<div class="relative flex flex-shrink-0 w-full sm:w-auto">
+						<img class="object-cover object-center h-96 aspect-square dark:bg-gray-500" src="https://source.unsplash.com/random/240x360/?3" alt="Image 3">
+					</div>
+					<div class="relative flex flex-shrink-0 w-full sm:w-auto">
+						<img class="object-cover object-center h-96 aspect-square dark:bg-gray-500" src="https://source.unsplash.com/random/240x360/?4" alt="Image 4">
+					</div>
+					<div class="relative flex flex-shrink-0 w-full sm:w-auto">
+						<img class="object-cover object-center h-96 aspect-square dark:bg-gray-500" src="https://source.unsplash.com/random/240x360/?5" alt="Image 5">
+					</div>
+				</div>
+				<button aria-label="Slide forward" id="next" class="absolute right-0 z-30 p-2 mr-10 focus:outline-none focus:dark:bg-gray-400 focus:ri focus:ri focus:ri">
+					<svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4">
+						<path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
 		<div class="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
 			<a rel="noopener noreferrer" href="#" class="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-900">
 				<img src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="" class="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500">
 				<div class="p-6 space-y-2 lg:col-span-5">
-					<h3 class="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">Noster tincidunt reprimique ad pro</h3>
+					<h3 class="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">Nasi Kebuli</h3>
 					<span class="text-xs dark:text-gray-400">February 19, 2021</span>
-					<p>Ei delenit sensibus liberavisse pri. Quod suscipit no nam. Est in graece fuisset, eos affert putent doctus id.</p>
+					<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 				</div>
 			</a>
 			<div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				<a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900">
-					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://source.unsplash.com/random/480x360?1">
+					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 					<div class="p-6 space-y-2">
-						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">In usu laoreet repudiare legendos</h3>
+						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">Nasi Kebuli</h3>
 						<span class="text-xs dark:text-gray-400">January 21, 2021</span>
-						<p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
+						<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 					</div>
 				</a>
 				<a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900">
-					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://source.unsplash.com/random/480x360?2">
+					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 					<div class="p-6 space-y-2">
 						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">In usu laoreet repudiare legendos</h3>
 						<span class="text-xs dark:text-gray-400">January 22, 2021</span>
-						<p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
+						<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 					</div>
 				</a>
 				<a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900">
-					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://source.unsplash.com/random/480x360?3">
+					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 					<div class="p-6 space-y-2">
 						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">In usu laoreet repudiare legendos</h3>
 						<span class="text-xs dark:text-gray-400">January 23, 2021</span>
-						<p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
+						<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 					</div>
 				</a>
 				<a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 hidden sm:block">
-					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://source.unsplash.com/random/480x360?4">
+					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 					<div class="p-6 space-y-2">
 						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">In usu laoreet repudiare legendos</h3>
 						<span class="text-xs dark:text-gray-400">January 24, 2021</span>
-						<p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
+						<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 					</div>
 				</a>
 				<a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 hidden sm:block">
-					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://source.unsplash.com/random/480x360?5">
+					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 					<div class="p-6 space-y-2">
 						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">In usu laoreet repudiare legendos</h3>
 						<span class="text-xs dark:text-gray-400">January 25, 2021</span>
-						<p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
+						<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 					</div>
 				</a>
 				<a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 hidden sm:block">
-					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://source.unsplash.com/random/480x360?6">
+					<img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://th.bing.com/th/id/OIP.3fhf89ZZgmj5eEfcRmkV2wHaFQ?w=266&h=189&c=7&r=0&o=5&dpr=1.5&pid=1.7">
 					<div class="p-6 space-y-2">
 						<h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">In usu laoreet repudiare legendos</h3>
 						<span class="text-xs dark:text-gray-400">January 26, 2021</span>
-						<p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
+						<p>Nasi kebuli sendiri terkadang memiliki nama yang bermacam-macam. Misalnya untuk di Madinah, Arab Saudi, menu yang satu ini dikenal dengan nama Mathbakh Mandhi. Nasi ini dimasak dengan 16 jenis bumbu yang dicampur ke dalam nasi putih atau nasi kuning khas. Ke 16  bumbu tersebut meliputi cengkeh, kapulaga, dan bunga japaron</p>
 					</div>
 				</a>
 			</div>
@@ -193,7 +244,37 @@
 				<button type="button" class="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-900 dark:text-gray-400">Load more posts...</button>
 			</div>
 		</div>
+		<!-- pagination -->
+		<div class="flex justify-center">
+			<div class="items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 sm:flex">
+				<span class="block">Page 2 of 4</span>
+				<div class="space-x-1">
+					<button title="previous" type="button" class="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow">
+						<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
+							<polyline points="15 18 9 12 15 6"></polyline>
+						</svg>
+					</button>
+					<button title="next" type="button" class="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow">
+						<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4">
+							<polyline points="9 18 15 12 9 6"></polyline>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!-- end public site -->
+
+	<!-- detail data -->
+	<div>
+		<div class="max-w-xs p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
+			<img src="https://source.unsplash.com/random/300x300/?1" alt="" class="object-cover object-center w-full rounded-md h-72 dark:bg-gray-500">
+			<div class="mt-6 mb-2">
+				<span class="block text-xs font-medium tracki uppercase dark:text-violet-400">Quisque</span>
+				<h2 class="text-xl font-semibold tracki">Nam maximus purus</h2>
+			</div>
+			<p class="dark:text-gray-100">Mauris et lorem at elit tristique dignissim et ullamcorper elit. In sed feugiat mi. Etiam ut lacinia dui.</p>
+		</div>
+	</div>
   </body>
 </html>

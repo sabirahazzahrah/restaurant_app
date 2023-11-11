@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../component/Navbar";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cuisines = () => {
   const BASE_URL = "http://localhost:3000";
   const [cuisines, setCuisines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -30,6 +32,11 @@ const Cuisines = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleEditClick = (id) => {
+    navigate(`cuisines/${id}`);
+  };
+
   return (
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
       <Navbar />
@@ -68,6 +75,11 @@ const Cuisines = () => {
                   <td className="p-3">{cuisine.Category.name}</td>
                   <td className="p-3">{cuisine.User.username}</td>
                   <td>
+                    <Link onClick={() => handleEditClick(cuisine.id)}>
+                      <i className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
+                        Edit
+                      </i>
+                    </Link>
                     <span className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
                       <span>Delete</span>
                     </span>

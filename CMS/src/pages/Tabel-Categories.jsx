@@ -38,14 +38,6 @@ const Categories = () => {
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full text-xs">
-            {/* <colgroup>
-            <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <col className="w-24" />
-          </colgroup> */}
             <thead className="dark:bg-gray-700">
               <tr className="text-center">
                 <th className="p-3">No</th>

@@ -12,6 +12,12 @@ const Navbar = () => {
             <li className="flex">
               <Link to={"/cuisines"}>Add Cuisine</Link>
             </li>
+            <li className="flex">
+              <Link to={"/cuisines"}>Add Cuisine</Link>
+            </li>
+            <li className="flex">
+              <Link to={"/cuisines"}>Add Cuisine</Link>
+            </li>
           </ul>
           <div className="flex items-center md:space-x-4">
             <div className="relative">

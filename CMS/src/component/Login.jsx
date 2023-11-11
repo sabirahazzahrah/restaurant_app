@@ -22,6 +22,7 @@ const Login = () => {
       localStorage.setItem("access_token", token);
       navigate("/cuisines");
     } catch (error) {
+      setError(error.message);
       console.log(error);
     }
   };

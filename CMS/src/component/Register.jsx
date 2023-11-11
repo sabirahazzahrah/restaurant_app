@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const BASE_URL = "http://localhost:3000";
@@ -10,8 +11,10 @@ const Register = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault();
     try {
       const token = localStorage.getItem("access_token");
       const res = await axios.post(
@@ -30,9 +33,11 @@ const Register = () => {
           },
         }
       );
-      console.log(res);
+      console.log(res.data);
+      navigate("/login");
     } catch (error) {
       console.log(error.message);
+      setError(error.message);
     }
   };
   return (

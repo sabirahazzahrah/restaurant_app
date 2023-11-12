@@ -4,7 +4,7 @@ import DetailPage from "../pages/detail-cuisine";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <LandingPage />,
   },
   {

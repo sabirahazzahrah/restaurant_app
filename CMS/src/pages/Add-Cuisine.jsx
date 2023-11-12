@@ -3,58 +3,76 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddCuisine = () => {
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://phase2-aio.vercel.app";
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [imgUrl, setImgUrl] = useState("");
+  const [stock, setStock] = useState("");
   const [CategoryId, setCategoryId] = useState("");
-  const [AuthorId, setAuthorId] = useState("");
   const [categories, setCategories] = useState([]);
   const [loading, Loading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  // console.log(name, "<<<name");
-  // console.log(description, "<<<description");
-  // console.log(price, "<<<price");
-  // console.log(imgUrl, "<<<imgUrl");
-  // console.log(CategoryId, "<<<CategoryID");
-  // console.log(AuthorId, "<<<<authorID");
-  // console.log(categories);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("access_token");
-        const { data } = await axios.get(`${BASE_URL}/categories`, {
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem("access_token");
+      const { data } = await axios.get(
+        `${BASE_URL}/apis/restaurant-app/categories`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        });
-        console.log(data, 34);
-        setCategories(data.data);
-      } catch (error) {
-        console.log(error);
-        setError(error.message);
-      }
-    };
-    fetchData();
-  }, []);
+        }
+      );
+      console.log(data);
+      setCategories(data.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const onChangeInputName = (event) => {
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
+  const onChangeInputDescription = (event) => {
+    console.log(event.target.value);
+    setDescription(event.target.value);
+  };
+  const onChangeInputPrice = (event) => {
+    console.log(event.target.value);
+    setPrice(parseFloat(event.target.value));
+  };
+  const onChangeInputImgUrl = (event) => {
+    console.log(event.target.value);
+    setImgUrl(event.target.value);
+  };
+  const onChangeInputStock = (event) => {
+    console.log(event.target.value);
+    setStock(event.target.value);
+  };
+  const onChangeInputCategoryId = (event) => {
+    console.log(event.target.value);
+    setCategoryId(event.target.value);
+  };
+
+  console.log(name + "ini name", description, price, imgUrl, stock, CategoryId);
 
   const handleAddCuisine = async (event) => {
     event.preventDefault();
-    console.log(event.target.value);
     try {
       const token = localStorage.getItem("access_token");
+      console.log(token, "ini");
       const data = await axios.post(
-        `${BASE_URL}/cuisines`,
+        `${BASE_URL}/apis/restaurant-app/cuisines`,
         {
           name,
           description,
           price,
           imgUrl,
-          CategoryId,
-          AuthorId,
+          stock,
+          categoryId: CategoryId,
         },
         {
           headers: {
@@ -62,13 +80,16 @@ const AddCuisine = () => {
           },
         }
       );
-      console.log("berhasil namabhi");
+      // console.log(data, "inii");
       navigate("/cuisines");
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   return (
     // <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
     //   <h2 className="text-2xl font-bold mb-4">Add Product</h2>
@@ -142,7 +163,7 @@ const AddCuisine = () => {
     // </div>
     // yg ini yg diapke yaa
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
-      <form action="" onSubmit={handleAddCuisine}>
+      <form onSubmit={handleAddCuisine}>
         <div class="mb-6">
           <label
             for="base-input"
@@ -155,8 +176,7 @@ const AddCuisine = () => {
             id="name"
             name="name"
             placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={onChangeInputName}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -172,8 +192,7 @@ const AddCuisine = () => {
             id="description"
             name="description"
             placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={onChangeInputDescription}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -189,8 +208,7 @@ const AddCuisine = () => {
             id="price"
             name="price"
             placeholder="Price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={onChangeInputPrice}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -206,8 +224,7 @@ const AddCuisine = () => {
             id="imgUrl"
             name="imgUrl"
             placeholder="ImgUrl"
-            value={imgUrl}
-            onChange={(e) => setImgUrl(e.target.value)}
+            onChange={onChangeInputImgUrl}
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -215,35 +232,40 @@ const AddCuisine = () => {
           <label
             for="base-input"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >
+            Stock
+          </label>
+          <input
+            type="text"
+            id="stock"
+            name="stock"
+            placeholder="stock"
+            onChange={onChangeInputStock}
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            for="base-input"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Category
           </label>
-          <input
-            type="number"
-            id="price"
+          <select
+            id="CategoryId"
             name="CategoryId"
-            placeholder="CategoryId"
             value={CategoryId}
             onChange={(e) => setCategoryId(e.target.value)}
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
-        </div>
-        <div class="mb-6">
-          <label
-            for="base-input"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            User
-          </label>
-          <input
-            type="number"
-            id="AuthorId"
-            name="AuthorId"
-            placeholder="AuthorId"
-            value={AuthorId}
-            onChange={(e) => setAuthorId(e.target.value)}
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
+            <option value="">Select a category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {console.log(category.id)}
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
         <button
           type="submit"

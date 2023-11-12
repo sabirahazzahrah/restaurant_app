@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const BASE_URL = "http://localhost:3000";
-  const [username, setUsername] = useState("");
+  const BASE_URL = "https://phase2-aio.vercel.app";
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -13,11 +13,12 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const res = await axios.post(`${BASE_URL}/login`, {
-        username,
+      const res = await axios.post(`${BASE_URL}/apis/login`, {
+        email,
         password,
       });
-      const token = res.data.access_token;
+      console.log(res.data.data.access_token);
+      const token = res.data.data.access_token;
       //   console.log(token);
       localStorage.setItem("access_token", token);
       navigate("/cuisines");
@@ -38,16 +39,16 @@ const Login = () => {
           onSubmit={handleLogin}
         >
           <div className="space-y-1 text-sm">
-            <label for="username" className="flex dark:text-gray-400">
-              Username
+            <label for="email" className="flex dark:text-gray-400">
+              Email
             </label>
             <input
               type="text"
-              value={username}
-              name="username"
-              id="username"
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              name="email"
+              id="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
             />
           </div>

@@ -4,25 +4,30 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditCuisine = () => {
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://phase2-aio.vercel.app";
   const { id } = useParams();
   const [cuisines, setCuisines] = useState({});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [CategoryId, setCategoryId] = useState("");
+  const [CategoryId, setCategoryId] = useState();
+  const [AuthorId, setAuthorId] = useState("");
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      const { data } = await axios.get(`${BASE_URL}/categories`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.get(
+        `${BASE_URL}/apis/restaurant-app/categories`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data);
       setCategories(data.data);
     } catch (error) {
       console.log(error.message);
@@ -32,11 +37,22 @@ const EditCuisine = () => {
   const fetchCuisines = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      const { data } = await axios.get(`${BASE_URL}/cuisines/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axios.get(
+        `${BASE_URL}/apis/restaurant-app/cuisines/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data, "iniii cate");
+      setCuisines(data.data);
+      setName(data.data.name);
+      setDescription(data.data.description);
+      setPrice(data.data.price);
+      setImgUrl(data.data.imgUrl);
+      setCategoryId(data.data.categoryId);
+
       console.log(data);
     } catch (error) {
       console.log(error.message);
@@ -52,13 +68,14 @@ const EditCuisine = () => {
     event.preventDefault();
     try {
       const token = localStorage.getItem("access_token");
-      await axios.put(
-        `${BASE_URL}/cuisines/${id}`,
+      let data = await axios.put(
+        `${BASE_URL}/apis/restaurant-app/cuisines/${id}`,
         {
           name,
           description,
           price,
           imgUrl,
+          categoryId: CategoryId,
         },
         {
           headers: {
@@ -66,6 +83,7 @@ const EditCuisine = () => {
           },
         }
       );
+      console.log(data);
       navigate("/cuisines");
     } catch (error) {
       console.log(error.message);
@@ -150,19 +168,25 @@ const EditCuisine = () => {
           >
             Category
           </label>
-          <input
-            type="number"
-            id="price"
+          <select
+            id="CategoryId"
             name="CategoryId"
-            placeholder="CategoryId"
             value={CategoryId}
             onChange={(e) => setCategoryId(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
+          >
+            <option value="">Select a category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {console.log(category.id)}
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
         <button
           type="submit"
-          classNameName="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          classNameName=" dark:text-gray-900 dark:bg-violet-400 p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
         >
           Edit Cuisine
         </button>

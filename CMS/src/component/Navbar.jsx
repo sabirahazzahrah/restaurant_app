@@ -1,22 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/login");
+  };
   return (
     <>
       <div className="p-4 dark:bg-gray-800 dark:text-gray-100">
         <div className="container flex justify-between h-16 mx-auto">
           <ul className="items-stretch space-x-3 lg:flex">
             <li className="flex">
-              <Link to={"/cuisines"}>Cuisines</Link>
+              <Link to={"/cuisines"}>Home</Link>
             </li>
             <li className="flex">
-              <Link to={"/cuisines"}>Add Cuisine</Link>
+              <Link to={"/cuisines/add"}>Add Cuisine</Link>
             </li>
             <li className="flex">
-              <Link to={"/cuisines"}>Add Cuisine</Link>
+              <Link to={"/categories"}>Categories</Link>
             </li>
             <li className="flex">
-              <Link to={"/cuisines"}>Add Cuisine</Link>
+              <Link to={"/categories/add"}>Add Categories</Link>
+            </li>
+            <li className="flex">
+              <Link to={"/add-user"}>Add User</Link>
             </li>
           </ul>
           <div className="flex items-center md:space-x-4">
@@ -43,12 +51,15 @@ const Navbar = () => {
                 className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900"
               />
             </div>
-            <button
-              type="button"
-              className="hidden px-6 py-2 font-semibold rounded lg:block dark:bg-violet-400 dark:text-gray-900"
-            >
-              Log in
-            </button>
+            <Link to={"/login"}>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="hidden px-6 py-2 font-semibold rounded lg:block dark:bg-violet-400 dark:text-gray-900"
+              >
+                Logout
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://phase2-aio.vercel.app";
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("Staff");
@@ -18,7 +18,7 @@ const Register = () => {
     try {
       const token = localStorage.getItem("access_token");
       const res = await axios.post(
-        `${BASE_URL}/register`,
+        `${BASE_URL}/apis/add-user`,
         {
           username,
           email,

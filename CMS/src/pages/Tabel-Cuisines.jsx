@@ -4,7 +4,7 @@ import Navbar from "../component/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 
 const Cuisines = () => {
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://phase2-aio.vercel.app";
   const [cuisines, setCuisines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,12 +14,15 @@ const Cuisines = () => {
     try {
       //   setLoading(true);
       const token = localStorage.getItem("access_token");
-      const { data } = await axios.get(`${BASE_URL}/cuisines`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(data.data);
+      const { data } = await axios.get(
+        `${BASE_URL}/apis/restaurant-app/cuisines`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log(data.data);
       setCuisines(data.data);
     } catch (error) {
       console.log(error.message);
@@ -35,6 +38,24 @@ const Cuisines = () => {
 
   const handleEditClick = (id) => {
     navigate(`cuisines/${id}`);
+  };
+
+  const handleDeleteCuisine = async (id) => {
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await axios.delete(
+        `${BASE_URL}/apis/restaurant-app/cuisines/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      fetchData();
+      console.log("berhasil delete");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -72,20 +93,30 @@ const Cuisines = () => {
                   <td className="p-3">{cuisine.name}</td>
                   <td className="p-3">{cuisine.price}</td>
                   <td className="p-3">{cuisine.description}</td>
-                  <td className="p-3">{cuisine.Category.name}</td>
+                  <td className="p-3">{cuisine.Category}</td>
                   <td className="p-3">{cuisine.User.username}</td>
                   <td>
-                    <Link onClick={() => handleEditClick(cuisine.id)}>
-                      <i className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
-                        Edit
-                      </i>
+                    <Link
+                      to={`/cuisines/${cuisine.id}`}
+                      onClick={() => handleEditClick(cuisine.id)}
+                    >
+                      <span className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
+                        <span>Edit</span>
+                      </span>
                     </Link>
-                    <span className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
-                      <span>Delete</span>
-                    </span>
-                    <span className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
-                      <span>Update</span>
-                    </span>
+                    <Link
+                      to={`/cuisines/delete/${cuisine.id}`}
+                      onClick={() => handleDeleteCuisine(cuisine.id)}
+                    >
+                      <span className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
+                        <span>Delete</span>
+                      </span>
+                    </Link>
+                    <Link to={`/img/${cuisine.id}`}>
+                      <span className="px-3 py-1 font-semibold rounded-md dark:bg-purple-400 dark:text-gray-900">
+                        <span>Update</span>
+                      </span>
+                    </Link>
                   </td>
                 </tr>
               );

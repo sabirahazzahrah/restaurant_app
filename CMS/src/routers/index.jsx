@@ -16,8 +16,8 @@ const router = createBrowserRouter([
   },
   {
     loader: () => {
-      const token = localStorage.getItem("access_token");
-      if (token) {
+      const tokens = localStorage.getItem("access_token");
+      if (tokens) {
         return redirect("/cuisines");
       }
       return null;

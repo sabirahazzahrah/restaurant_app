@@ -1,5 +1,4 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Login from "../component/login";
 import Register from "../pages/Register";
 import Cuisines from "../pages/Tabel-Cuisines";
 import Categories from "../pages/Tabel-Categories";
@@ -8,10 +7,11 @@ import AddCategory from "../pages/Add-Category";
 import EditCuisine from "../pages/Edit-Cuisine";
 import EditCategory from "../pages/Edit-Category";
 import PatchImg from "../pages/Patch-ImgUrl";
+import Login from "../component/Login";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
     loader: () => {
       const token = localStorage.getItem("access_token");
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     loader: () => {
       const token = localStorage.getItem("access_token");
       if (!token) {
-        return redirect("/login");
+        return redirect("/");
       }
       return null;
     },

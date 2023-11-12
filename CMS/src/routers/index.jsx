@@ -7,7 +7,7 @@ import AddCategory from "../pages/Add-Category";
 import EditCuisine from "../pages/Edit-Cuisine";
 import EditCategory from "../pages/Edit-Category";
 import PatchImg from "../pages/Patch-ImgUrl";
-import Login from "../component/Login";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
   {

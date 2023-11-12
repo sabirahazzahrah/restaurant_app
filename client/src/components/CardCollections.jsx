@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import axios from "axios";
 
 const CardCollections = () => {
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://phase2-aio.vercel.app";
   const [cuisines, setCuisines] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,9 +13,11 @@ const CardCollections = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${BASE_URL}/public/cuisines`);
-      //   console.log(data.data);
-      setCuisines(data.data);
+      const { data } = await axios.get(
+        `${BASE_URL}/apis/pub/restaurant-app/cuisines`
+      );
+      console.log(data);
+      setCuisines(data.data.query);
     } catch (error) {
       console.log(error.message);
       setError(error.message);

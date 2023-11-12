@@ -5,14 +5,16 @@ import { useParams } from "react-router-dom";
 
 const Detail = () => {
   const { id } = useParams();
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://phase2-aio.vercel.app";
   const [cuisines, setCuisines] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchDetailCuisine = async () => {
     try {
-      const { data } = await axios.get(`${BASE_URL}/public/cuisines/${id}`);
+      const { data } = await axios.get(
+        `${BASE_URL}/apis/pub/restaurant-app/cuisines/${id}`
+      );
       console.log(data.data);
       setCuisines(data.data);
     } catch (error) {

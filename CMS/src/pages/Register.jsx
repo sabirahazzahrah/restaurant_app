@@ -16,7 +16,7 @@ const Register = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     try {
-      const token = localStorage.getItem("access_token");
+      // const token = localStorage.getItem("access_token");
       const res = await axios.post(
         `${BASE_URL}/apis/add-user`,
         {
@@ -26,12 +26,12 @@ const Register = () => {
           password,
           phoneNumber,
           address,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
         }
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // }
       );
       console.log(res.data);
       navigate("/login");

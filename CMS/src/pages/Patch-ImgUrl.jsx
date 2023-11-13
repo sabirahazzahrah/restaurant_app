@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Button from "../component/button";
+import Button from "../component/Button";
 
 const PatchImg = () => {
   const BASE_URL = "https://phase2-aio.vercel.app";
